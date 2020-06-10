@@ -1,0 +1,58 @@
+ext.versions = [
+    gradleVersion: '4.0.0',
+    kotlinVersion: '1.3.72',
+
+    // Default config
+    minSdkVersion: 15,
+    targetSdkVersion: 29,
+    compileSdkVersion: 29,
+    buildToolsVersion: '29.0.3',
+
+    // Dependency Injection
+    daggerVersion: '2.27',
+
+    // Framework dependencies
+    androidXCoreVersion: '1.3.0',
+    appCompatVersion: '1.1.0',
+    constraintLayoutVersion: '1.1.3',
+
+    // Coroutines
+    coroutinesVersion: '1.3.7',
+
+    // Network
+    retrofitVersion: '2.9.0',
+    httpLoggingInterceptorVersion: '4.7.2',
+    picassoVersion: '2.71828',
+
+    // Testing
+    jUnitVersion: '4.12',
+    mockkVersion: '1.10.0'
+]
+
+ext.libraries = [
+    kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlinVersion",
+
+    // Dependency Injection
+    dagger: "com.google.dagger:dagger:$versions.daggerVersion",
+    daggerCompiler: "com.google.dagger:dagger-compiler:$versions.daggerVersion",
+
+    // Framework dependencies
+    androidXCore: "androidx.core:core-ktx:$versions.androidXCoreVersion",
+    appCompat: "androidx.appcompat:appcompat:$versions.appCompatVersion",
+    constraintLayout: "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
+
+    // Coroutines
+    coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutinesVersion",
+    coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion",
+
+    // Network
+    retrofit: "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
+    retrofitMoshiConverter: "com.squareup.retrofit2:converter-moshi:$versions.retrofitVersion",
+    httpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.httpLoggingInterceptorVersion",
+    picasso: "com.squareup.picasso:picasso:$versions.picassoVersion",
+
+    // Testing
+    jUnit: "junit:junit:$versions.jUnitVersion",
+    mockk: "io.mockk:mockk:$versions.mockkVersion",
+    coroutinesTesting: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+]

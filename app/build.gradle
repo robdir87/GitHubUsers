@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -15,13 +16,28 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        buildConfigField "String", "BASE_URL",  "\"https://api.github.com/search/\""
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
@@ -32,12 +48,27 @@ dependencies {
 
     implementation libraries.kotlin
 
-    // App dependencies
+    // Dependency Injection
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+
+    // Framework dependencies
     implementation libraries.androidXCore
     implementation libraries.appCompat
     implementation libraries.constraintLayout
 
+    // Coroutines
+    implementation libraries.coroutines
+    implementation libraries.coroutinesAndroid
+
+    // Network
+    implementation libraries.retrofit
+    implementation libraries.retrofitMoshiConverter
+    implementation libraries.httpLoggingInterceptor
+    implementation libraries.picasso
+
     // Testing
     testImplementation libraries.jUnit
     testImplementation libraries.mockk
+    testImplementation libraries.coroutinesTesting
 }
