@@ -24,6 +24,9 @@ ext.versions = [
     httpLoggingInterceptorVersion: '4.7.2',
     picassoVersion: '2.71828',
 
+    // ViewModel
+    viewModelKtxVersion: '2.2.0',
+
     // Testing
     jUnitVersion: '4.12',
     mockkVersion: '1.10.0'
@@ -50,6 +53,9 @@ ext.libraries = [
     retrofitMoshiConverter: "com.squareup.retrofit2:converter-moshi:$versions.retrofitVersion",
     httpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.httpLoggingInterceptorVersion",
     picasso: "com.squareup.picasso:picasso:$versions.picassoVersion",
+
+    // ViewModel
+    viewModelKtx: "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.viewModelKtxVersion",
 
     // Testing
     jUnit: "junit:junit:$versions.jUnitVersion",

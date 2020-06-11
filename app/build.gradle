@@ -67,6 +67,9 @@ dependencies {
     implementation libraries.httpLoggingInterceptor
     implementation libraries.picasso
 
+    // ViewModel
+    implementation libraries.viewModelKtx
+
     // Testing
     testImplementation libraries.jUnit
     testImplementation libraries.mockk

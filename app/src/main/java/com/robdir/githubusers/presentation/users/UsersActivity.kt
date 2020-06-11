@@ -11,7 +11,7 @@ import com.robdir.githubusers.R
 import com.robdir.githubusers.presentation.UsersViewState
 import javax.inject.Inject
 
-class SearchUsersActivity : AppCompatActivity() {
+class UsersActivity : AppCompatActivity() {
 
     @Inject
     lateinit var usersViewModelFactory: UsersViewModelFactory
@@ -22,31 +22,29 @@ class SearchUsersActivity : AppCompatActivity() {
         (application as GitHubUsersApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_search_users)
+        setContentView(R.layout.activity_users)
 
         usersViewModel.apply {
             viewState.observe(
-                this@SearchUsersActivity,
+                this@UsersActivity,
                 Observer { viewState ->
                     when(viewState) {
                         is UsersViewState.Loading ->
-                            Toast.makeText(this@SearchUsersActivity, "Loading", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@UsersActivity, "Loading", Toast.LENGTH_SHORT).show()
                         is UsersViewState.Loaded -> {
-//                            Toast.makeText(this@SearchUsersActivity, "Users ${viewState.users}", Toast.LENGTH_LONG)
-//                                .show()
                             findViewById<TextView>(R.id.textViewUsers).text = viewState.users.toString()
                         }
+                        is UsersViewState.Error ->
+                            Toast.makeText(this@UsersActivity, "Error", Toast.LENGTH_SHORT).show()
                         is UsersViewState.NetworkError ->
-                            Toast.makeText(this@SearchUsersActivity, "Error", Toast.LENGTH_SHORT).show()
-                        is UsersViewState.NetworkError ->
-                            Toast.makeText(this@SearchUsersActivity, "Network Error", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@UsersActivity, "Network Error", Toast.LENGTH_SHORT).show()
                     }
 
                 }
             )
         }
 
-        findViewById<TextView>(R.id.textViewGo).setOnClickListener { usersViewModel.searchUsers("robdir87") }
+        findViewById<TextView>(R.id.textViewGo).setOnClickListener { usersViewModel.searchUsers("tom") }
     }
 
     private fun viewModel(): UsersViewModel =
