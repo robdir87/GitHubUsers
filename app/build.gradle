@@ -56,6 +56,8 @@ dependencies {
     implementation libraries.androidXCore
     implementation libraries.appCompat
     implementation libraries.constraintLayout
+    implementation libraries.recyclerView
+    implementation libraries.cardView
 
     // Coroutines
     implementation libraries.coroutines

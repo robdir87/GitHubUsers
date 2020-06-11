@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GitHubUsers</string>
+
+    <string name="search_users_hint">Search for username</string>
+
+    <string name="users_not_available_error_message">Users not available.</string>
+    <string name="action_try_again">TRY AGAIN</string>
 </resources>

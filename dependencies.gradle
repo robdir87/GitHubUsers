@@ -3,7 +3,7 @@ ext.versions = [
     kotlinVersion: '1.3.72',
 
     // Default config
-    minSdkVersion: 15,
+    minSdkVersion: 19,
     targetSdkVersion: 29,
     compileSdkVersion: 29,
     buildToolsVersion: '29.0.3',
@@ -15,6 +15,8 @@ ext.versions = [
     androidXCoreVersion: '1.3.0',
     appCompatVersion: '1.1.0',
     constraintLayoutVersion: '1.1.3',
+    recyclerViewVersion: '1.1.0',
+    cardViewVersion: '1.0.0',
 
     // Coroutines
     coroutinesVersion: '1.3.7',
@@ -43,6 +45,9 @@ ext.libraries = [
     androidXCore: "androidx.core:core-ktx:$versions.androidXCoreVersion",
     appCompat: "androidx.appcompat:appcompat:$versions.appCompatVersion",
     constraintLayout: "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
+    recyclerView: "androidx.recyclerview:recyclerview:$versions.recyclerViewVersion",
+    cardView: "androidx.cardview:cardview:$versions.cardViewVersion",
+
 
     // Coroutines
     coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutinesVersion",

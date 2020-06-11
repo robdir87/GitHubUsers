@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_regular">14sp</dimen>
+
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_regular">12dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="margin_xlarge">18dp</dimen>
+
+    <dimen name="user_thumbnail_size">100dp</dimen>
+    <dimen name="user_card_margin">4dp</dimen>
+    <dimen name="user_card_padding">12dp</dimen>
+</resources>
