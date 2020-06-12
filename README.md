@@ -1,5 +1,5 @@
-# GithubUsers
-This sample app uses [Github Search API](https://developer.github.com/v3/search/#search-users) to search for users and display user details.
+# GitHubUsers
+This sample app uses [GitHub Search API](https://developer.github.com/v3/search/#search-users) to search for users and display user details.
 A user can be removed from the search results by swiping horizontally, while dragging users up and down will reorder the search result list.
 
 - It is written in **Kotlin**, using **Coroutines**

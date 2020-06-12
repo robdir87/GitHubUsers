@@ -14,7 +14,7 @@ import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.R
 import com.robdir.githubusers.databinding.ActivityUsersBinding
 import com.robdir.githubusers.domain.users.User
-import com.robdir.githubusers.presentation.GithubUsersError
+import com.robdir.githubusers.presentation.GitHubUsersError
 import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -126,8 +126,8 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
             this@UsersActivity,
             Observer { error ->
                 when (error) {
-                    is GithubUsersError.Generic -> manageError(R.string.users_not_available_error_message)
-                    is GithubUsersError.Network -> manageError(R.string.network_error_message)
+                    is GitHubUsersError.Generic -> manageError(R.string.users_not_available_error_message)
+                    is GitHubUsersError.Network -> manageError(R.string.network_error_message)
                 }
             }
         )

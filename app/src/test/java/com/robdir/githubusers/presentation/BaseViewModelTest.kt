@@ -24,7 +24,7 @@ abstract class BaseViewModelTest {
 
     protected val networkInfoProvider = mockk<NetworkInfoProvider>()
 
-    protected val errorObserver = mockk<Observer<GithubUsersError>>(relaxed = true)
+    protected val errorObserver = mockk<Observer<GitHubUsersError>>(relaxed = true)
 
     @Before
     @CallSuper

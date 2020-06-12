@@ -6,7 +6,7 @@ import com.robdir.githubusers.domain.UsersRepository
 import com.robdir.githubusers.domain.users.User
 import com.robdir.githubusers.domain.users.UserMapper
 import com.robdir.githubusers.presentation.BaseViewModelTest
-import com.robdir.githubusers.presentation.GithubUsersError
+import com.robdir.githubusers.presentation.GitHubUsersError
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -44,7 +44,7 @@ class UsersViewModelTest : BaseViewModelTest() {
     fun `searchUsers should emit a network error when there is no network connection`() {
         runBlockingTest {
             // Arrange
-            val error = GithubUsersError.Network
+            val error = GitHubUsersError.Network
 
             coEvery { networkInfoProvider.isNetworkAvailable() } returns false
             coEvery { usersRepository.getUsers(query) } throws IOException()
@@ -65,7 +65,7 @@ class UsersViewModelTest : BaseViewModelTest() {
         runBlockingTest {
             // Arrange
             val exception = Exception()
-            val error = GithubUsersError.Generic(exception)
+            val error = GitHubUsersError.Generic(exception)
 
             coEvery { networkInfoProvider.isNetworkAvailable() } returns true
             coEvery { usersRepository.getUsers(query) } throws exception

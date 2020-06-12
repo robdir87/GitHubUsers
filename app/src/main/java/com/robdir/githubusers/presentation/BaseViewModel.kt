@@ -8,14 +8,14 @@ import java.io.IOException
 
 abstract class BaseViewModel(private val networkInfoProvider: NetworkInfoProvider) : ViewModel() {
 
-    private val _error = MutableLiveData<GithubUsersError>()
-    val error: LiveData<GithubUsersError> = _error
+    private val _error = MutableLiveData<GitHubUsersError>()
+    val error: LiveData<GitHubUsersError> = _error
 
     protected fun manageError(error: Exception) {
         if (error is IOException && !networkInfoProvider.isNetworkAvailable()) {
-            _error.value = GithubUsersError.Network
+            _error.value = GitHubUsersError.Network
         } else {
-            _error.value = GithubUsersError.Generic(error)
+            _error.value = GitHubUsersError.Generic(error)
         }
     }
 }
