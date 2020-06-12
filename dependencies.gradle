@@ -32,7 +32,8 @@ ext.versions = [
 
     // Testing
     jUnitVersion: '4.12',
-    mockkVersion: '1.10.0'
+    mockkVersion: '1.10.0',
+    archCoreTestingVersion: '2.1.0'
 ]
 
 ext.libraries = [
@@ -66,5 +67,6 @@ ext.libraries = [
     // Testing
     jUnit: "junit:junit:$versions.jUnitVersion",
     mockk: "io.mockk:mockk:$versions.mockkVersion",
-    coroutinesTesting: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+    coroutinesTesting: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion",
+    archCoreTesting: "android.arch.core:core-testing:$versions.archCoreTestingVersion"
 ]

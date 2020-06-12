@@ -81,4 +81,5 @@ dependencies {
     testImplementation libraries.jUnit
     testImplementation libraries.mockk
     testImplementation libraries.coroutinesTesting
+    testImplementation libraries.archCoreTesting
 }

@@ -37,24 +37,28 @@ class UsersViewModel constructor(
 
     fun removeUserFromSearchResults(userPosition: Int, query: String) {
         viewModelScope.launch {
-            _users.value?.toMutableList()?.run {
-                if (userPosition >= 0) {
-                    removeAt(userPosition)
-                    usersRepository.updateUsers(query, userMapper.revertMapList(userList = this))
-                    _users.value = this
-                }
+            val users = userMapper.mapList(usersRepository.getUsers(query))
+                .toMutableList()
+
+            if (userPosition in 0 until users.size) {
+                users.removeAt(userPosition)
+                usersRepository.updateUsers(query, userMapper.revertMapList(userList = users))
+                _users.value = users
             }
         }
     }
 
     fun swapUsersInSearchResults(firstUserPosition: Int, secondUserPosition: Int, query: String) {
         viewModelScope.launch {
-            _users.value?.toMutableList()?.run {
-                if (firstUserPosition >= 0 && secondUserPosition >= 0 && firstUserPosition != secondUserPosition) {
-                    Collections.swap(this, firstUserPosition, secondUserPosition)
-                    usersRepository.updateUsers(query, userMapper.revertMapList(userList = this))
-                    _users.value = this
-                }
+            val users = userMapper.mapList(usersRepository.getUsers(query))
+                .toMutableList()
+
+            if (firstUserPosition in 0 until users.size && secondUserPosition in 0 until users.size
+                && firstUserPosition != secondUserPosition
+            ) {
+                Collections.swap(users, firstUserPosition, secondUserPosition)
+                usersRepository.updateUsers(query, userMapper.revertMapList(userList = users))
+                _users.value = users
             }
         }
     }
