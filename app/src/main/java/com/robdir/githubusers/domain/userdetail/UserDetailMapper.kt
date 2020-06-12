@@ -1,12 +1,11 @@
 package com.robdir.githubusers.domain.userdetail
 
-import com.robdir.githubusers.common.Mapper
 import com.robdir.githubusers.data.userdetail.model.UserDetailDto
 import javax.inject.Inject
 
-class UserDetailMapper @Inject constructor() : Mapper<UserDetailDto, UserDetail> {
+class UserDetailMapper @Inject constructor() {
 
-    override fun map(from: UserDetailDto): UserDetail = with(from) {
+    fun map(userDetailDto: UserDetailDto): UserDetail = with(userDetailDto) {
         UserDetail(
             username = username,
             id = id,

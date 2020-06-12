@@ -8,11 +8,13 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.R
 import com.robdir.githubusers.databinding.ActivityUsersBinding
 import com.robdir.githubusers.domain.users.User
+import com.robdir.githubusers.presentation.GithubUsersError
 import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +26,7 @@ import kotlin.coroutines.CoroutineContext
 
 private const val SEARCH_THROTTLING_TIME_IN_MILLIS = 500L
 
-class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback {
+class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback, UserTouchHelper.Callback {
 
     @Inject
     lateinit var usersAdapter: UsersAdapter
@@ -60,12 +62,29 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
         startActivity(UserDetailActivity.intent(context = this, username = user.username, avatarUrl = user.avatarUrl))
     }
 
+    override fun onUserSwiped(position: Int) {
+        usersViewModel.removeUserFromSearchResults(
+            userPosition = position,
+            query = binding.searchViewUsers.query.toString()
+        )
+    }
+
+    override fun onUserMoved(fromPosition: Int, toPosition: Int) {
+        usersViewModel.swapUsersInSearchResults(
+            firstUserPosition = fromPosition,
+            secondUserPosition = toPosition,
+            query = binding.searchViewUsers.query.toString()
+        )
+    }
+
     private fun setupRecyclerViewUsers() {
         usersAdapter.callback = this
 
         binding.recyclerViewUsers.apply {
             adapter = usersAdapter
             layoutManager = LinearLayoutManager(context)
+
+            ItemTouchHelper(UserTouchHelper(this@UsersActivity)).attachToRecyclerView(this)
         }
     }
 
@@ -95,16 +114,20 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
     }
 
     private fun setupUsersViewModel() {
-        usersViewModel.viewState.observe(
+        usersViewModel.users.observe(
             this@UsersActivity,
-            Observer { viewState ->
-                when (viewState) {
-                    is UsersViewState.Loaded -> {
-                        binding.recyclerViewUsers.visibility = VISIBLE
-                        usersAdapter.submitList(viewState.users)
-                    }
-                    is UsersViewState.Error -> manageError(R.string.users_not_available_error_message)
-                    is UsersViewState.NetworkError -> manageError(R.string.network_error_message)
+            Observer { users ->
+                binding.recyclerViewUsers.visibility = VISIBLE
+                usersAdapter.submitList(users.toMutableList())
+            }
+        )
+
+        usersViewModel.error.observe(
+            this@UsersActivity,
+            Observer { error ->
+                when (error) {
+                    is GithubUsersError.Generic -> manageError(R.string.users_not_available_error_message)
+                    is GithubUsersError.Network -> manageError(R.string.network_error_message)
                 }
             }
         )

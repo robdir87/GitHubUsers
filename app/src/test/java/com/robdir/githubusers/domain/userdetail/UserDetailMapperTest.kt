@@ -18,11 +18,6 @@ class UserDetailMapperTest {
         assertEquals(userDetail(name = "robdir87"), mapper.map(userDetailDto(name = null)))
     }
 
-    @Test
-    fun `mapList should return a list of User when a list of UserDto is received `() {
-        assertEquals(listOf(userDetail()), mapper.mapList(listOf(userDetailDto())))
-    }
-
     private fun userDetailDto(name: String? = "Roberto"): UserDetailDto =
         UserDetailDto(
             username = "robdir87",

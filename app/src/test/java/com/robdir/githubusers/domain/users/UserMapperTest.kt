@@ -27,4 +27,20 @@ class UserMapperTest {
             mapper.mapList(listOf(UserDto(username, id, avatarUrl)))
         )
     }
+
+    @Test
+    fun `revertMap should return a UserDto when a User is received`() {
+        assertEquals(
+            UserDto(username, id, avatarUrl),
+            mapper.revertMap(User(username, id, avatarUrl))
+        )
+    }
+
+    @Test
+    fun `revertMapList should return a list of UserDto when a list of User is received `() {
+        assertEquals(
+            listOf(UserDto(username, id, avatarUrl)),
+            mapper.revertMapList(listOf(User(username, id, avatarUrl)))
+        )
+    }
 }

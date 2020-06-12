@@ -5,7 +5,9 @@ import com.robdir.githubusers.data.users.model.UserDto
 
 interface UsersRepository {
 
-    suspend fun getUsers(query: String, page: Int): List<UserDto>
+    suspend fun getUsers(query: String): List<UserDto>
 
     suspend fun getUserDetail(username: String): UserDetailDto
+
+    suspend fun updateUsers(query: String, users: List<UserDto>)
 }

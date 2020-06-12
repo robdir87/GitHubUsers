@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/user_card_padding"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_xlarge"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageView_thumbnail"
