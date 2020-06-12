@@ -40,8 +40,8 @@ android {
         jvmTarget = "1.8"
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -62,7 +62,7 @@ dependencies {
     implementation libraries.constraintLayout
     implementation libraries.recyclerView
     implementation libraries.cardView
-    implementation libraries.coordinatorLayout
+    implementation libraries.materialDesign
 
     // Coroutines
     implementation libraries.coroutines

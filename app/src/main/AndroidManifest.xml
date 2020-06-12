@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.userdetail.UserDetailActivity" />
+        <activity android:name=".presentation.userdetail.UserDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
