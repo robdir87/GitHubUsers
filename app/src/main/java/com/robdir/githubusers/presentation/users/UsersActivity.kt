@@ -11,9 +11,17 @@ import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.databinding.ActivityUsersBinding
 import com.robdir.githubusers.domain.users.User
 import com.robdir.githubusers.presentation.UsersViewState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
-class UsersActivity : AppCompatActivity(), UsersAdapter.Callback {
+private const val SEARCH_THROTTLING_TIME_IN_MILLIS = 500L
+
+class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback {
 
     @Inject
     lateinit var usersViewModelFactory: UsersViewModelFactory
@@ -25,6 +33,9 @@ class UsersActivity : AppCompatActivity(), UsersAdapter.Callback {
 
     private val usersViewModel: UsersViewModel by lazy { viewModel() }
 
+    private var queryTextChangedJob: Job? = null
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as GitHubUsersApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
@@ -35,6 +46,11 @@ class UsersActivity : AppCompatActivity(), UsersAdapter.Callback {
         setupRecyclerViewUsers()
         setupSearchViewUsers()
         setupUsersViewModel()
+    }
+
+    override fun onDestroy() {
+        queryTextChangedJob?.cancel()
+        super.onDestroy()
     }
 
     override fun onUserSelected(user: User) {
@@ -51,16 +67,28 @@ class UsersActivity : AppCompatActivity(), UsersAdapter.Callback {
     }
 
     private fun setupSearchViewUsers() {
-        binding.searchViewUsers.setOnQueryTextListener(
-            object : SearchView.OnQueryTextListener {
-                override fun onQueryTextChange(query: String?): Boolean {
-                    usersViewModel.searchUsers(query.orEmpty())
-                    return true
-                }
+        binding.searchViewUsers.run {
+            isIconifiedByDefault = false
 
-                override fun onQueryTextSubmit(query: String?): Boolean = false
-            }
-        )
+            setOnQueryTextListener(
+                object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextChange(query: String?): Boolean {
+                        queryTextChangedJob?.cancel()
+
+                        queryTextChangedJob = launch {
+                            delay(SEARCH_THROTTLING_TIME_IN_MILLIS)
+                            usersViewModel.searchUsers(query.orEmpty())
+                        }
+                        return true
+                    }
+
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        clearFocus()
+                        return true
+                    }
+                }
+            )
+        }
     }
 
     private fun setupUsersViewModel() {
