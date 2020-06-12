@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_size_regular">14sp</dimen>
-    <dimen name="text_size_large">16sp</dimen>
-    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_regular">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
 
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_regular">12dp</dimen>
     <dimen name="margin_large">16dp</dimen>
     <dimen name="margin_xlarge">18dp</dimen>
-    <dimen name="padding_regular">8dp</dimen>
 
     <!-- Users -->
     <dimen name="user_thumbnail_size">100dp</dimen>
@@ -19,6 +17,5 @@
     <!-- User detail -->
     <dimen name="app_bar_layout_elevation">2dp</dimen>
     <dimen name="user_detail_expanded_toolbar_height">300dp</dimen>
-    <dimen name="user_detail_container_margin_top">32dp</dimen>
     <dimen name="user_detail_title_scrim">220dp</dimen>
 </resources>
