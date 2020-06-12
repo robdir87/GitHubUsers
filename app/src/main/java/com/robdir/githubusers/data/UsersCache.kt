@@ -1,12 +1,14 @@
 package com.robdir.githubusers.data
 
+import androidx.annotation.VisibleForTesting
 import com.robdir.githubusers.data.users.model.UserDto
 import javax.inject.Inject
 
 typealias Query = String
 
 class UsersCache @Inject constructor() {
-    private val cache = HashMap<Query, MutableList<UserDto>>()
+    @VisibleForTesting
+    val cache = HashMap<Query, MutableList<UserDto>>()
 
     fun getUsers(query: String): List<UserDto> = cache[query].orEmpty()
 
