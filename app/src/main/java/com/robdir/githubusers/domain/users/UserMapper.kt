@@ -9,7 +9,7 @@ class UserMapper @Inject constructor() {
 
     fun mapList(userDtoList: List<UserDto>): List<User> = userDtoList.map(::map)
 
-    fun revertMap(user: User): UserDto = with(user) { UserDto(username, id, avatarUrl)}
+    fun revertMap(user: User): UserDto = with(user) { UserDto(username, id, avatarUrl) }
 
     fun revertMapList(userList: List<User>): List<UserDto> = userList.map(::revertMap)
 }

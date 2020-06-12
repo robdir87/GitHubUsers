@@ -20,11 +20,11 @@ object MockDataProvider {
 
     fun userDetail(name: String = "Roberto"): UserDetail =
         UserDetail(
-            username = name,
+            username = "robdir87",
             id = 87,
             avatarUrl = "avatar_url",
             htmlUrl = "html_url",
-            name = "Roberto",
+            name = name,
             publicRepos = "3",
             publicGists = "1",
             followers = "4",

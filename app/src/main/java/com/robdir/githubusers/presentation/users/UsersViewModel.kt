@@ -53,8 +53,8 @@ class UsersViewModel constructor(
             val users = userMapper.mapList(usersRepository.getUsers(query))
                 .toMutableList()
 
-            if (firstUserPosition in 0 until users.size && secondUserPosition in 0 until users.size
-                && firstUserPosition != secondUserPosition
+            if (firstUserPosition in 0 until users.size && secondUserPosition in 0 until users.size &&
+                firstUserPosition != secondUserPosition
             ) {
                 Collections.swap(users, firstUserPosition, secondUserPosition)
                 usersRepository.updateUsers(query, userMapper.revertMapList(userList = users))

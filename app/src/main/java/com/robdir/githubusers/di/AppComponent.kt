@@ -1,10 +1,10 @@
 package com.robdir.githubusers.di
 
 import android.content.Context
-import com.robdir.githubusers.presentation.users.UsersActivity
 import com.robdir.githubusers.di.modules.NetworkModule
 import com.robdir.githubusers.di.modules.UsersModule
 import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
+import com.robdir.githubusers.presentation.users.UsersActivity
 import dagger.BindsInstance
 import dagger.Component
 
