@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.users.UsersActivity">
 
-    <androidx.appcompat.widget.SearchView
+    <SearchView
         android:id="@+id/searchView_users"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
