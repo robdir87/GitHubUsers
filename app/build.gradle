@@ -62,6 +62,7 @@ dependencies {
     implementation libraries.constraintLayout
     implementation libraries.recyclerView
     implementation libraries.cardView
+    implementation libraries.coordinatorLayout
 
     // Coroutines
     implementation libraries.coroutines
