@@ -2,28 +2,23 @@ package com.robdir.githubusers.presentation.users
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robdir.githubusers.core.NetworkInfoProvider
 import com.robdir.githubusers.domain.UsersRepository
 import com.robdir.githubusers.domain.users.User
 import com.robdir.githubusers.domain.users.UserMapper
-import com.robdir.githubusers.presentation.GithubUsersError
+import com.robdir.githubusers.presentation.BaseViewModel
 import kotlinx.coroutines.launch
-import java.io.IOException
 import java.util.Collections
 
 class UsersViewModel constructor(
     private val usersRepository: UsersRepository,
     private val userMapper: UserMapper,
-    private val networkInfoProvider: NetworkInfoProvider
-) : ViewModel() {
+    networkInfoProvider: NetworkInfoProvider
+) : BaseViewModel(networkInfoProvider) {
 
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>> = _users
-
-    private val _error = MutableLiveData<GithubUsersError>()
-    val error: LiveData<GithubUsersError> = _error
 
     fun searchUsers(query: String) {
         if (query.isEmpty()) {
@@ -61,14 +56,6 @@ class UsersViewModel constructor(
                     _users.value = this
                 }
             }
-        }
-    }
-
-    private fun manageError(error: Exception) {
-        if (error is IOException && !networkInfoProvider.isNetworkAvailable()) {
-            _error.value = GithubUsersError.Network
-        } else {
-            _error.value = GithubUsersError.Generic(error)
         }
     }
 }

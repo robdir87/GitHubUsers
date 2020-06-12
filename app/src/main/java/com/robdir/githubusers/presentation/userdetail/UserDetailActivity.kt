@@ -15,6 +15,7 @@ import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.R
 import com.robdir.githubusers.databinding.ActivityUserDetailBinding
 import com.robdir.githubusers.domain.userdetail.UserDetail
+import com.robdir.githubusers.presentation.GithubUsersError
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -65,13 +66,17 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun setupUserDetailViewModel() {
-        userDetailViewModel.viewState.observe(
+        userDetailViewModel.userDetail.observe(
             this@UserDetailActivity,
-            Observer { viewState ->
-                when (viewState) {
-                    is UserDetailViewState.Loaded -> displayUserDetail(viewState.usersDetail)
-                    is UserDetailViewState.Error -> manageError(R.string.user_details_not_available_error_message)
-                    is UserDetailViewState.NetworkError -> manageError(R.string.network_error_message)
+            Observer { usersDetail -> displayUserDetail(usersDetail) }
+        )
+
+        userDetailViewModel.error.observe(
+            this@UserDetailActivity,
+            Observer { error ->
+                when (error) {
+                    is GithubUsersError.Generic -> manageError(R.string.user_details_not_available_error_message)
+                    is GithubUsersError.Network -> manageError(R.string.network_error_message)
                 }
             }
         )
