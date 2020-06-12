@@ -1,6 +1,11 @@
 package com.robdir.githubusers.di.modules
 
+import android.content.Context
+import android.net.ConnectivityManager
+import androidx.core.content.ContextCompat
 import com.robdir.githubusers.BuildConfig
+import com.robdir.githubusers.core.DeviceNetworkInfoProvider
+import com.robdir.githubusers.core.NetworkInfoProvider
 import com.robdir.githubusers.di.AppScope
 import com.squareup.picasso.Picasso
 import dagger.Module
@@ -49,4 +54,8 @@ object NetworkModule {
 
     @Provides
     fun picasso(): Picasso = Picasso.get()
+
+    @Provides
+    fun provideNetworkInfoProvider(context: Context): NetworkInfoProvider =
+        DeviceNetworkInfoProvider(ContextCompat.getSystemService(context, ConnectivityManager::class.java))
 }

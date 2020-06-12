@@ -1,14 +1,18 @@
 package com.robdir.githubusers.presentation.users
 
 import android.os.Bundle
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.SearchView
-import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robdir.githubusers.GitHubUsersApplication
+import com.robdir.githubusers.R
 import com.robdir.githubusers.databinding.ActivityUsersBinding
+import com.robdir.githubusers.domain.users.User
 import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,8 +56,8 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
         super.onDestroy()
     }
 
-    override fun onUserSelected(username: String, avatarUrl: String) {
-        startActivity(UserDetailActivity.intent(context = this, username = username, avatarUrl = avatarUrl))
+    override fun onUserSelected(user: User) {
+        startActivity(UserDetailActivity.intent(context = this, username = user.username, avatarUrl = user.avatarUrl))
     }
 
     private fun setupRecyclerViewUsers() {
@@ -95,14 +99,12 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
             this@UsersActivity,
             Observer { viewState ->
                 when (viewState) {
-                    is UsersViewState.Loading ->
-                        Toast.makeText(this@UsersActivity, "Loading", Toast.LENGTH_SHORT).show()
-                    is UsersViewState.Loaded ->
+                    is UsersViewState.Loaded -> {
+                        binding.recyclerViewUsers.visibility = VISIBLE
                         usersAdapter.submitList(viewState.users)
-                    is UsersViewState.Error ->
-                        Toast.makeText(this@UsersActivity, "Error", Toast.LENGTH_SHORT).show()
-                    is UsersViewState.NetworkError ->
-                        Toast.makeText(this@UsersActivity, "Network Error", Toast.LENGTH_SHORT).show()
+                    }
+                    is UsersViewState.Error -> manageError(R.string.users_not_available_error_message)
+                    is UsersViewState.NetworkError -> manageError(R.string.network_error_message)
                 }
             }
         )
@@ -110,4 +112,9 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
 
     private fun viewModel(): UsersViewModel =
         ViewModelProvider(this, usersViewModelFactory).get(UsersViewModel::class.java)
+
+    private fun manageError(@StringRes messageId: Int) {
+        binding.recyclerViewUsers.visibility = GONE
+        binding.layoutNoUsers.textViewNoUsersMessage.setText(messageId)
+    }
 }

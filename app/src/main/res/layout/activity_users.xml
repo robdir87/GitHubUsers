@@ -16,25 +16,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/search_users_hint" />
 
+    <include
+        android:id="@+id/layout_noUsers"
+        layout="@layout/layout_no_users"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView_users" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_users"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/colorWhiteOpaque"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView_users"
         tools:listitem="@layout/layout_list_item_user" />
-
-    <include
-        android:id="@+id/layout_noUsers"
-        layout="@layout/layout_no_users"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView_users" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

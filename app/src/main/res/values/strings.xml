@@ -3,8 +3,10 @@
 
     <string name="search_users_hint">Search for username</string>
 
-    <string name="no_browser_error_message">No browser installed on this device</string>
     <string name="users_not_available_error_message">Users not available.</string>
+    <string name="user_details_not_available_error_message">Something went wrong while fetching more user data.</string>
+    <string name="network_error_message">Please check your internet connection.</string>
+    <string name="no_browser_error_message">No browser installed on this device</string>
     <string name="action_try_again">TRY AGAIN</string>
 
     <string name="user_detail_name">Name:</string>

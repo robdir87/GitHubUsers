@@ -14,26 +14,31 @@ class UserDetailMapperTest {
     }
 
     @Test
+    fun `map should return a UserDetail with the name set to the username when a UserDetailDto is received and the name is null`() {
+        assertEquals(userDetail(name = "robdir87"), mapper.map(userDetailDto(name = null)))
+    }
+
+    @Test
     fun `mapList should return a list of User when a list of UserDto is received `() {
         assertEquals(listOf(userDetail()), mapper.mapList(listOf(userDetailDto())))
     }
 
-    private fun userDetailDto(): UserDetailDto =
+    private fun userDetailDto(name: String? = "Roberto"): UserDetailDto =
         UserDetailDto(
             username = "robdir87",
             id = 87,
             avatarUrl = "avatar_url",
             htmlUrl = "html_url",
-            name = "Roberto",
+            name = name,
             publicRepos = 3,
             publicGists = 1,
             followers = 4,
             following = 5
         )
 
-    private fun userDetail(): UserDetail =
+    private fun userDetail(name: String = "Roberto"): UserDetail =
         UserDetail(
-            username = "robdir87",
+            username = name,
             id = 87,
             avatarUrl = "avatar_url",
             htmlUrl = "html_url",

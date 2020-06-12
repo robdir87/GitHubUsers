@@ -6,9 +6,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View.VISIBLE
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.R
 import com.robdir.githubusers.databinding.ActivityUserDetailBinding
@@ -68,10 +70,8 @@ class UserDetailActivity : AppCompatActivity() {
             Observer { viewState ->
                 when (viewState) {
                     is UserDetailViewState.Loaded -> displayUserDetail(viewState.usersDetail)
-                    is UserDetailViewState.Error ->
-                        Toast.makeText(this@UserDetailActivity, "Error", Toast.LENGTH_SHORT).show()
-                    is UserDetailViewState.NetworkError ->
-                        Toast.makeText(this@UserDetailActivity, "Network Error", Toast.LENGTH_SHORT).show()
+                    is UserDetailViewState.Error -> manageError(R.string.user_details_not_available_error_message)
+                    is UserDetailViewState.NetworkError -> manageError(R.string.network_error_message)
                 }
             }
         )
@@ -104,6 +104,10 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun viewModel(): UserDetailViewModel =
         ViewModelProvider(this, userDetailModelFactory).get(UserDetailViewModel::class.java)
+
+    private fun manageError(@StringRes messageId: Int) {
+        Snackbar.make(binding.root, messageId, Snackbar.LENGTH_LONG).show()
+    }
 
     companion object {
 

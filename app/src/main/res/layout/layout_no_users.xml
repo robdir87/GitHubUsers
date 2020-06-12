@@ -14,8 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_github_black"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@drawable/ic_github_black" />
 
     <TextView
         android:id="@+id/textView_noUsersMessage"
@@ -26,21 +26,9 @@
         android:text="@string/users_not_available_error_message"
         android:textColor="@color/colorTextPrimary"
         android:textSize="@dimen/text_size_regular"
-        app:layout_constraintBottom_toTopOf="@id/textView_noUsersAction"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView_noUsers" />
-
-    <TextView
-        android:id="@+id/textView_noUsersAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_try_again"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/text_size_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_noUsersMessage" />
+        app:layout_constraintTop_toBottomOf="@id/imageView_noUsers" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@ class UsersAdapter @Inject constructor(private val picasso: Picasso) :
     ListAdapter<User, UsersAdapter.ViewHolder>(UserComparator) {
 
     interface Callback {
-        fun onUserSelected(username: String, avatarUrl: String)
+        fun onUserSelected(user: User)
     }
     var callback: Callback? = null
 
@@ -42,7 +42,7 @@ class UsersAdapter @Inject constructor(private val picasso: Picasso) :
 
         fun bind(user: User) {
             with(userBinding) {
-                layoutUserListItem.setOnClickListener { callback?.onUserSelected(user.username, user.avatarUrl) }
+                layoutUserListItem.setOnClickListener { callback?.onUserSelected(user) }
                 textViewUserName.text = user.username
                 picasso.load(user.avatarUrl).into(imageViewThumbnail)
             }

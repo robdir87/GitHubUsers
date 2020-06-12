@@ -12,7 +12,7 @@ class UserDetailMapper @Inject constructor() : Mapper<UserDetailDto, UserDetail>
             id = id,
             avatarUrl = avatarUrl,
             htmlUrl = htmlUrl,
-            name = name,
+            name = name ?: username,
             publicRepos = "$publicRepos",
             publicGists = "$publicGists",
             followers = "$followers",
