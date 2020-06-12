@@ -11,6 +11,7 @@ import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.databinding.ActivityUsersBinding
 import com.robdir.githubusers.domain.users.User
 import com.robdir.githubusers.presentation.UsersViewState
+import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -53,8 +54,10 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
         super.onDestroy()
     }
 
-    override fun onUserSelected(user: User) {
-        Toast.makeText(this, "TODO: Selected ${user.username}", Toast.LENGTH_SHORT).show()
+    override fun onUserSelected(username: String, avatarUrl: String) {
+        Toast.makeText(this, "TODO: Selected $username", Toast.LENGTH_SHORT).show()
+
+        startActivity(UserDetailActivity.intent(context = this, username = username, avatarUrl = avatarUrl))
     }
 
     private fun setupRecyclerViewUsers() {
