@@ -5,7 +5,7 @@ data class UserDetail(
     val id: Int,
     val avatarUrl: String,
     val htmlUrl: String,
-    val bio: String,
+    val name: String,
     val publicRepos: String,
     val publicGists: String,
     val followers: String,

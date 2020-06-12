@@ -6,17 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/background_light"
-    android:padding="@dimen/margin_regular">
+    android:padding="@dimen/margin_regular"
+    android:visibility="gone"
+    tools:visibility="visible">
 
     <TextView
-        android:id="@+id/textView_userBioLabel"
+        android:id="@+id/textView_userFullNameLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_small"
-        android:text="@string/user_detail_bio"
+        android:text="@string/user_detail_name"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@id/textView_publicReposLabel"
-        app:layout_constraintEnd_toStartOf="@id/textView_userBio"
+        app:layout_constraintEnd_toStartOf="@id/textView_userFullName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
@@ -24,13 +26,13 @@
         app:layout_constraintWidth_percent="0.3" />
 
     <TextView
-        android:id="@+id/textView_userBio"
+        android:id="@+id/textView_userFullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_small"
         app:layout_constraintBottom_toTopOf="@id/textView_publicRepos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/textView_userBioLabel"
+        app:layout_constraintStart_toEndOf="@id/textView_userFullNameLabel"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintWidth_default="percent"
@@ -47,7 +49,7 @@
         app:layout_constraintBottom_toTopOf="@id/textView_publicGistsLabel"
         app:layout_constraintEnd_toStartOf="@id/textView_publicRepos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_userBioLabel"
+        app:layout_constraintTop_toBottomOf="@id/textView_userFullNameLabel"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.3" />
 
@@ -59,7 +61,7 @@
         app:layout_constraintBottom_toTopOf="@id/textView_publicGists"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textView_publicReposLabel"
-        app:layout_constraintTop_toBottomOf="@id/textView_userBio"
+        app:layout_constraintTop_toBottomOf="@id/textView_userFullName"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.7"
         tools:text="3" />

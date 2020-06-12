@@ -58,8 +58,7 @@
             android:id="@+id/layout_userDetail"
             layout="@layout/layout_user_detail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
+            android:layout_height="wrap_content" />
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,4 +1,4 @@
-package com.robdir.githubusers.presentation
+package com.robdir.githubusers.presentation.users
 
 import com.robdir.githubusers.domain.users.User
 
@@ -6,7 +6,7 @@ sealed class UsersViewState {
 
     object Loading : UsersViewState()
 
-    object Error : UsersViewState()
+    data class Error(val throwable: Throwable, val message: String? = null) : UsersViewState()
 
     object NetworkError : UsersViewState()
 

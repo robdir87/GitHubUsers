@@ -9,8 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.robdir.githubusers.GitHubUsersApplication
 import com.robdir.githubusers.databinding.ActivityUsersBinding
-import com.robdir.githubusers.domain.users.User
-import com.robdir.githubusers.presentation.UsersViewState
 import com.robdir.githubusers.presentation.userdetail.UserDetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,10 +23,10 @@ private const val SEARCH_THROTTLING_TIME_IN_MILLIS = 500L
 class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback {
 
     @Inject
-    lateinit var usersViewModelFactory: UsersViewModelFactory
+    lateinit var usersAdapter: UsersAdapter
 
     @Inject
-    lateinit var usersAdapter: UsersAdapter
+    lateinit var usersViewModelFactory: UsersViewModelFactory
 
     private lateinit var binding: ActivityUsersBinding
 
@@ -55,8 +53,6 @@ class UsersActivity : AppCompatActivity(), CoroutineScope, UsersAdapter.Callback
     }
 
     override fun onUserSelected(username: String, avatarUrl: String) {
-        Toast.makeText(this, "TODO: Selected $username", Toast.LENGTH_SHORT).show()
-
         startActivity(UserDetailActivity.intent(context = this, username = username, avatarUrl = avatarUrl))
     }
 

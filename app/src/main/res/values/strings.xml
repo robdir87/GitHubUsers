@@ -3,12 +3,14 @@
 
     <string name="search_users_hint">Search for username</string>
 
+    <string name="no_browser_error_message">No browser installed on this device</string>
     <string name="users_not_available_error_message">Users not available.</string>
     <string name="action_try_again">TRY AGAIN</string>
 
-    <string name="user_detail_bio">Bio:</string>
+    <string name="user_detail_name">Name:</string>
     <string name="user_detail_public_repos">Public repos:</string>
     <string name="user_detail_public_gists">Public gists:</string>
     <string name="user_detail_followers">Followers:</string>
     <string name="user_detail_following">Following:</string>
+
 </resources>

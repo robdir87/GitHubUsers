@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robdir.githubusers.domain.UsersRepository
 import com.robdir.githubusers.domain.users.UserMapper
-import com.robdir.githubusers.presentation.UsersViewState
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,7 +32,7 @@ class UsersViewModel @Inject constructor(
             } catch(exception: Exception) {
                 //manageError(exception)
                 exception.printStackTrace() // retrofit2.HttpException
-                _viewState.value = UsersViewState.Error
+                _viewState.value = UsersViewState.Error(exception)
             }
         }
     }
